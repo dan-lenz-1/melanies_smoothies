@@ -1,5 +1,6 @@
 # Import python packages
 import streamlit as st
+import pandas as pd
 # from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark.functions import col
 import requests
@@ -37,7 +38,10 @@ if ingredients_list:
         ingredients_string += fruit_chosen + ' '
         st.subheader(fruit_chosen + ' Nutrition Information')
         smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/" + fruit_chosen)
-        sf_df=st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
+        # sf_df=st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
+        pd_df=my_dataframe.to_pandas()
+        st.dataframe(pd_df)
+        
 
     # st.write(ingredients_string)
 
